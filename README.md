@@ -14,7 +14,7 @@
 ## Table of contents
 
 1. [Project](#Project)
-2. [Algorithms](#Algorithms)
+2. [Algorithm](#Algorithm)
 3. [Explanation](#Explanation)
 4. [Analysis](#Analysis)
 5. [Results](#Results)
