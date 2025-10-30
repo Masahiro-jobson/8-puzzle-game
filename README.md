@@ -190,7 +190,7 @@ Figure 5 shows the procedure of empty panel’s movement with Misplaced Tiles he
 A* search chooses the node with the lowest f(n) = g(n) + h(n), where g(n) is the node depth and h(n) = the number of misplaced tiles. <br/>
 In result, misplaced tile heuristic explored more nodes because it does not see how far misplaced tiles are.<br/>
 
- <img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/e367aeb2-42dc-4448-8a92-6a1a2e3b6e4e" /> <br/>
+ <img width="621" height="591" alt="image" src="https://github.com/user-attachments/assets/4f3e638b-f01c-4304-8674-dfa2bfdb64d8" /> <br/>
 Figure 5. The procedure until the goal state (Misplaced Panel) <br/>
 
 
@@ -204,7 +204,7 @@ The movement is almost the same as misplaced tiles; however, there are significa
 Fewer unnecessary nodes are expanded because this heuristic counts the vertical and horizontal distances of each tile from its goal position, <br/>
 so h=5 in the both sides of nodes enabling make it easier to move on to node 3 without accounting for 2 additional nodes (See red rectangle shown in Figure 6).<br/>
  
-<img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/006bd599-dff7-47fd-b275-099e365c9a92" /> <br/>
+<img width="577" height="595" alt="image" src="https://github.com/user-attachments/assets/388b2f9d-3d3a-45bf-b0f8-ad1e17971206" /> <br/>
 Figure 6. The procedure until the goal state (Manhattan distance) <br/>
 
  <img width="451" height="112" alt="image" src="https://github.com/user-attachments/assets/e2b44154-793b-4629-a69e-9be81f7ad23c" /> <br/>
