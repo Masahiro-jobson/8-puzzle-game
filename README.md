@@ -42,9 +42,10 @@
 <p>
  This project focuses on A* search algorithm, which is enforced with two heuristics such as misplaced tiles and Manhattan distance. <br/>
 The efficiency of the the approach is evaluated with an analysis and visualization of the program’s performance such as iterations, memory usage,　solution cost, and time and space complexities. <br/>
-<img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/0f466541-8a68-48ea-adad-fb8dee3e6f10" /> <br/>
-<img width="495" height="580" alt="image" src="https://github.com/user-attachments/assets/2c01f1b2-9c72-4987-a877-1f4d7563ab1b" /> <br/>
-<img width="509" height="430" alt="image" src="https://github.com/user-attachments/assets/a499f4af-6b66-43de-98d6-26b315446c2c" />
+<img width="636" height="741" alt="image" src="https://github.com/user-attachments/assets/ad96e5f7-8d29-462e-9585-1aabb8d54650" /><br/>
+<img width="607" height="709" alt="image" src="https://github.com/user-attachments/assets/4f2f5a81-1d8e-4c25-bbd8-ed36ebeaac32" /><br/>
+<img width="605" height="525" alt="image" src="https://github.com/user-attachments/assets/75b9d496-9ede-44b5-930c-2a9eecc5e9e7" /> <br/>
+
 
 ## Algorithm
 
