@@ -41,8 +41,7 @@
 
 <p>
  This project focuses on A* search algorithm, which is enforced with two heuristics such as misplaced tiles and Manhattan distance. <br/>
-The efficiency of the the approach is evaluated with an analysis and visualization of the program’s performance such as iterations, memory usage, <br/>
-solution cost, and time and space complexities. <br/>
+The efficiency of the the approach is evaluated with an analysis and visualization of the program’s performance such as iterations, memory usage,　solution cost, and time and space complexities. <br/>
 <img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/0f466541-8a68-48ea-adad-fb8dee3e6f10" /> <br/>
 <img width="495" height="580" alt="image" src="https://github.com/user-attachments/assets/2c01f1b2-9c72-4987-a877-1f4d7563ab1b" /> <br/>
 <img width="509" height="430" alt="image" src="https://github.com/user-attachments/assets/a499f4af-6b66-43de-98d6-26b315446c2c" />
@@ -191,7 +190,7 @@ Figure 5 shows the procedure of empty panel’s movement with Misplaced Tiles he
 A* search chooses the node with the lowest f(n) = g(n) + h(n), where g(n) is the node depth and h(n) = the number of misplaced tiles. <br/>
 In result, misplaced tile heuristic explored more nodes because it does not see how far misplaced tiles are.<br/>
 
- <img width="397" height="371" alt="image" src="https://github.com/user-attachments/assets/e367aeb2-42dc-4448-8a92-6a1a2e3b6e4e" /> <br/>
+ <img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/e367aeb2-42dc-4448-8a92-6a1a2e3b6e4e" /> <br/>
 Figure 5. The procedure until the goal state (Misplaced Panel) <br/>
 
 
@@ -205,7 +204,7 @@ The movement is almost the same as misplaced tiles; however, there are significa
 Fewer unnecessary nodes are expanded because this heuristic counts the vertical and horizontal distances of each tile from its goal position, <br/>
 so h=5 in the both sides of nodes enabling make it easier to move on to node 3 without accounting for 2 additional nodes (See red rectangle shown in Figure 6).<br/>
  
-<img width="353" height="375" alt="image" src="https://github.com/user-attachments/assets/006bd599-dff7-47fd-b275-099e365c9a92" /> <br/>
+<img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/006bd599-dff7-47fd-b275-099e365c9a92" /> <br/>
 Figure 6. The procedure until the goal state (Manhattan distance) <br/>
 
  <img width="451" height="112" alt="image" src="https://github.com/user-attachments/assets/e2b44154-793b-4629-a69e-9be81f7ad23c" /> <br/>
