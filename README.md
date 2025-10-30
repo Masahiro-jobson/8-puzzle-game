@@ -14,9 +14,11 @@
 ## Table of contents
 
 1. [Project](#Project)
-2. [Environment](#Environment)
-3. [Directory](#Directory)
-4. [CrateDevelopmentEnvironment](#CreateDevelopmentEnvironment)
+2. [Algorithms](#Algorithms)
+3. [Explanation](#Explanation)
+4. [Analysis](#Analysis)
+5. [Results](#Results)
+6. [Observations](#Observations)
 
 <!-- READMEの作成方法のドキュメントのリンク -->
 <!-- <br />
@@ -38,6 +40,26 @@
 ## Project
 
 <p>
+ This project focuses on A* search algorithm, which is enforced with two heuristics such as misplaced tiles and Manhattan distance. <br/>
+The efficiency of the the approach is evaluated with an analysis and visualization of the program’s performance such as iterations, memory usage, <br/>
+solution cost, and time and space complexities. <br/>
+<img width="484" height="614" alt="image" src="https://github.com/user-attachments/assets/0f466541-8a68-48ea-adad-fb8dee3e6f10" /> <br/>
+<img width="495" height="580" alt="image" src="https://github.com/user-attachments/assets/2c01f1b2-9c72-4987-a877-1f4d7563ab1b" /> <br/>
+<img width="509" height="430" alt="image" src="https://github.com/user-attachments/assets/a499f4af-6b66-43de-98d6-26b315446c2c" />
+
+## Algorithm
+
+Algorithm steps are composed of the following 7 steps: <br/>
+1.	Initialisation: Put the initial state in the open list (g = 0). <br/>
+2.	Node choosing: Choose the nodes with the lowest f(n) value from the open list. <br/>
+3.	Goal Checking: if the chosen node is the goal, recompose the path and finish the procedure. <br/>
+4.	Exploration: Create all probable slides of the empty tile. <br/>
+5.	Cost Computation: For each successor, calculate g(n) and h(n). <br/>
+6.	Refreshing List : Add new nodes to the open list if not explored, or if a cheper way is found. <br/>
+7.	Continue the procedures until reaching the goal or the open list is empty. <br/>
+
+## Explanation
+
  My code is made of Java language and there are 3 files. <br/>
 Each java file has each role such as PuzzleApplication for main method, Solutions for implementing A search*, and HeuristicConstraints for offering heuristics for A*. <br/>
 In this project, an initial and goal state are defined as figure 1.<br/>
@@ -141,248 +163,99 @@ PuzzleApplication.main() <br/>
 <img width="229" height="45" alt="image" src="https://github.com/user-attachments/assets/8b148d00-b0ad-4ffc-8d22-cfebfa78fd8a" /> <br/>
 Figure 5: Choices of next steps for user. <br/>
 
+## Analysis
+
+This section clarifies time complexity and space complexity. <br/>
+Let b is branching factor (max 4 for the 8-puzzle), while d is the depth of the optimal solution. <br/>
+
+Time Complexity: <br/>
+For uninformed search such as BFS, the worst case is O(bd)=O(4d). On the other hand, the complexity of A* relies on the heuristic’s precision. <br/>
+The best case is O(1), which means A* is complete instantly if the initial state is the goal state. <br/>
+Worst case is O(bd)=O(4d), which is same value as BFS if the heuristic is poor or all paths have to be explored. <br/>
+
+Space Complexity: <br/>
+A* requires to save all explored nodes in memory (e.g., open + closed lists), which leads to O(bd) as a worst-case space usage. <br/>
+
+Trade-offs between Misplaced Tiles and Manhattan Distance: <br/>
+Misplaced tiles enables quicker heuristic computation per node but more node exploration, which means higher total runtime. <br/>
+On the other hand, Manhattan distance is a bit slower heuristic to compute fewer total nodes, which lead to better entire efficiency. <br/>
+
+## Results
+
+This section illustrates how A* search works in 8-puzzle problem by both heuristics (Misplaced tiles and Manhattan distance) with diagram and table. <br/>
+In figure 5 and 6, g(n) is used to stand for the node depth; however, in my program implementation and tables 1 and 2,  <br/>
+total cost will be calculated by f(n) = g(n) + h(n), where g(n) refers to the actual accumulated path cost. <br/>
+
+Misplaced Tiles: <br/>
+Figure 5 shows the procedure of empty panel’s movement with Misplaced Tiles heuristic. And the below steps are summarized in table 1.  <br/>
+A* search chooses the node with the lowest f(n) = g(n) + h(n), where g(n) is the node depth and h(n) = the number of misplaced tiles. <br/>
+In result, misplaced tile heuristic explored more nodes because it does not see how far misplaced tiles are.<br/>
+
+ <img width="397" height="371" alt="image" src="https://github.com/user-attachments/assets/e367aeb2-42dc-4448-8a92-6a1a2e3b6e4e" /> <br/>
+Figure 5. The procedure until the goal state (Misplaced Panel) <br/>
+
+
+ <img width="451" height="110" alt="image" src="https://github.com/user-attachments/assets/4a9a891e-f291-43cd-aaca-3d488174fa2e" /> <br/>
+Table 1. The result of Misplaced Panel <br/>
+
+
+Manhattan distance: <br/>
+Next, the steps of empty panel’s movement with Manhattan distance were described with figure 6 and table 2. <br/>
+The movement is almost the same as misplaced tiles; however, there are significant difference in Node 3. <br/>
+Fewer unnecessary nodes are expanded because this heuristic counts the vertical and horizontal distances of each tile from its goal position, <br/>
+so h=5 in the both sides of nodes enabling make it easier to move on to node 3 without accounting for 2 additional nodes (See red rectangle shown in Figure 6).<br/>
+ 
+<img width="353" height="375" alt="image" src="https://github.com/user-attachments/assets/006bd599-dff7-47fd-b275-099e365c9a92" /> <br/>
+Figure 6. The procedure until the goal state (Manhattan distance) <br/>
+
+ <img width="451" height="112" alt="image" src="https://github.com/user-attachments/assets/e2b44154-793b-4629-a69e-9be81f7ad23c" /> <br/>
+Table 2. The result of Manhattan Distance <br/>
+
+## Observations
+
+Table 3 shows the results of my program implementation with key concepts. <br/>
+
+ <img width="451" height="54" alt="image" src="https://github.com/user-attachments/assets/d3da6762-ef97-4a1f-acb6-ea988ec955a0" /> <br/>
+Table 3. Comparison between both heuristic approach <br/>
+
+Key concepts: <br/>
+
+Iterations: Number of nodes explored before reaching the goal (how many times A* search explored a node). <br/>
+Time (ms): Running time for the search procedure. <br/>
+Path Length: Number of moves to get to the goal state. <br/>
+Cost: The collected cost of the selected path (Sum of moved tile values). <br/>
+Used Space: Maximum number of nodes saved in memory thoroughout the search. <br/>
+
+The following key findings are observed from table 3: <br/>
+
+1. Iteration: As shown in section 5, the worst-case time complexity of A* is O(bd).<br/>
+2. On average, branching factor of both heuristics is ~2.67 for 8-puzzle calculated by the following steps: <br/>
+
+Correct moves for each empty position: <br/>
+Corners: 2 probable moves <br/>
+Edges: (without corners): 3 probable moves <br/>
+Center: 4 possible moves <br/>
+
+Count each positions such as corner positions = 4 tiles, edge positions = 4 tiles, and center = 1 tile. <br/>
+And then, they multiply by correct moves, and the result is as follows: <br/>
+
+b = ((4 × 2) + (4 × 3) + (1 × 4))/9 = 24/9 ≈ 2.67 <br/>
+
+So, the average branhing factor b ≈ 2.67, and d = 5 (from path length). <br/>
+In practice, the Manhattan heuristic decreased the number of explored nodes (iterations) compared to Misplaced Tiles (22 against 25), <br/>
+
+2. Time efficiency: The execution time by Manhattan Distance (1ms) was remarkably lower than Misplaced tiles (9ms), <br/>
+which shows that a more informative heuristic can decrease execution time. <br/>
+
+3. Path length and Cost: Both heuristics created the same path length (5 moves), with a slightly different total past cost <br/>
+(38 for misplaced tile and 39 for Manhattan Distance), which describes that both heuristics reached optimal solution in terms of moves; <br/>
+however, Manhattan Distance moderately larger tile movements because of distance computations. <br/>
+
+4. Memory Usage:  Space complexity is O(bd) as shown in section 5. <br/>
+Maximum nodes saved in memory were lower for Manhattan Distance (17 nodes) compared to misplaced tile (20 nodes), which proves that the heuristic can decrease unnecessary node explorations and enhance space efficiency. 
+
 
 </p>
-<!-- プロジェクトの概要を記載 -->
-<!-- 
-  <p align="left">
-    <br />
-    プロジェクト詳細にBacklogのWikiのリンク 
-    <a href="Backlogのwikiリンク"><strong>プロジェクト詳細 »</strong></a>
-    <br />
-    <br />　-->
 
-<p align="right">(<a href="#top">Back to Top</a>)</p>
-## Environment
-
-<!-- 言語、フレームワーク、ミドルウェア、インフラの一覧とバージョンを記載 -->
-
-| Language・Framework  | Version |
-| --------------------- | ---------- |
-| Java                  | 17.0.10    |
-| Spring Boot           | 3.4.3      |
-| Node.js               | 22.14.0    |
-| React                 | 19.0.0     |
-
-For other package version, please refer to pom.xml and package.json.
-
-<p align="right">(<a href="#top">Back to Top</a>)</p>
-
-## Directory
-
-<!-- Treeコマンドを使ってディレクトリ構成を記載 -->
-
-❯ tree -I 'node_modules'
-```bash
-.
-├── email-writer-backend
-│   ├── Dockerfile
-│   ├── HELP.md
-│   ├── README.md
-│   ├── mvnw
-│   ├── mvnw.cmd
-│   ├── pom.xml
-│   ├── src
-│   │   ├── main
-│   │   │   ├── java
-│   │   │   │   └── com
-│   │   │   │       └── email
-│   │   │   │           └── emai
-│   │   │   │               └── writer
-│   │   │   │                   ├── EmailGeneratorController.java
-│   │   │   │                   ├── EmailGeneratorService.java
-│   │   │   │                   ├── EmailRequest.java
-│   │   │   │                   └── EmailWriterApplication.java
-│   │   │   └── resources
-│   │   │       ├── application.properties
-│   │   │       ├── static
-│   │   │       └── templates
-│   │   └── test
-│   │       └── java
-│   │           └── com
-│   │               └── email
-│   │                   └── emai
-│   │                       └── writer
-│   │                           └── EmailWriterApplicationTests.java
-│   └── target
-│       ├── classes
-│       │   ├── application.properties
-│       │   └── com
-│       │       └── email
-│       │           └── emai
-│       │               └── writer
-│       │                   ├── EmailGeneratorController.class
-│       │                   ├── EmailGeneratorService.class
-│       │                   ├── EmailRequest.class
-│       │                   └── EmailWriterApplication.class
-│       ├── email-writer-0.0.1-SNAPSHOT.jar
-│       ├── email-writer-0.0.1-SNAPSHOT.jar.original
-│       ├── generated-sources
-│       │   └── annotations
-│       ├── generated-test-sources
-│       │   └── test-annotations
-│       ├── maven-archiver
-│       │   └── pom.properties
-│       ├── maven-status
-│       │   └── maven-compiler-plugin
-│       │       ├── compile
-│       │       │   └── default-compile
-│       │       │       ├── createdFiles.lst
-│       │       │       └── inputFiles.lst
-│       │       └── testCompile
-│       │           └── default-testCompile
-│       │               ├── createdFiles.lst
-│       │               └── inputFiles.lst
-│       └── test-classes
-│           └── com
-│               └── email
-│                   └── emai
-│                       └── writer
-│                           └── EmailWriterApplicationTests.class
-└── email-writer-frontend
-    ├── README.md
-    ├── email-writer-ext
-    │   ├── content.css
-    │   ├── content.js
-    │   ├── hina_drawing.png
-    │   └── manifest.json
-    ├── eslint.config.js
-    ├── index.html
-    ├── package-lock.json
-    ├── package.json
-    ├── public
-    │   └── vite.svg
-    ├── src
-    │   ├── App.css
-    │   ├── App.jsx
-    │   ├── assets
-    │   │   └── react.svg
-    │   ├── index.css
-    │   └── main.jsx
-    └── vite.config.js
-
-```
-
-<p align="right">(<a href="#top">Back to Top</a>)</p>
-
-## CreateDevelopmentEnvironment
-
-
-<!-- コンテナの作成方法、パッケージのインストール方法など、開発環境構築に必要な情報を記載 -->
-<!-- 
-### コンテナの作成と起動
-
-.env ファイルを以下の環境変数例と[環境変数の一覧](#環境変数の一覧)を元に作成
-
-.env
-MYSQL_ROOT_PASSWORD=root
-MYSQL_DATABASE=django-db
-MYSQL_USER=django
-MYSQL_PASSWORD=django
-MYSQL_HOST=db
-MYSQL_PORT=3306
-SECRET_KEY=django
-DJANGO_SETTINGS_MODULE=project.settings.local
-
-
-.env ファイルを作成後、以下のコマンドで開発環境を構築 -->
-
-
-### Check how it works
-
-Check if you can access to https://verdant-sunburst-f21397.netlify.app/ <br/>
-However, the server (backend) is made with render free plan, so you cannot get <br/>
-a reply because the sever has a limited time. <br/>
-Please see the following picture as an example. <br/>
-
-Ex.1 Reply with professional tone. <br/>
-<img width="893" alt="image" src="https://github.com/user-attachments/assets/9dac86c0-6b0a-4c99-a8c5-6c02102928ec" />
-
-Ex.2 Reply with casual tone. <br/>
-<img width="893" alt="image" src="https://github.com/user-attachments/assets/2d73b291-7fa0-4da0-b3c8-b4b0aa90fc19" />
-
-Ex.3 Reply with friendly tone. <br/>
-<img width="877" alt="image" src="https://github.com/user-attachments/assets/f18aef02-75c0-4c51-ade2-cd025dce72ad" />
-
-
-<!-- 
-<### コンテナの停止
-
-以下のコマンドでコンテナを停止することができます
-
-make down
-
-### 環境変数の一覧
-
-| 変数名                 | 役割                                      | デフォルト値                       | DEV 環境での値                           |
-| ---------------------- | ----------------------------------------- | ---------------------------------- | ---------------------------------------- |
-| MYSQL_ROOT_PASSWORD    | MySQL のルートパスワード（Docker で使用） | root                               |                                          |
-| MYSQL_DATABASE         | MySQL のデータベース名（Docker で使用）   | django-db                          |                                          |
-| MYSQL_USER             | MySQL のユーザ名（Docker で使用）         | django                             |                                          |
-| MYSQL_PASSWORD         | MySQL のパスワード（Docker で使用）       | django                             |                                          |
-| MYSQL_HOST             | MySQL のホスト名（Docker で使用）         | db                                 |                                          |
-| MYSQL_PORT             | MySQL のポート番号（Docker で使用）       | 3306                               |                                          |
-| SECRET_KEY             | Django のシークレットキー                 | secretkey                          | 他者に推測されないランダムな値にすること |
-| ALLOWED_HOSTS          | リクエストを許可するホスト名              | localhost 127.0.0.1 [::1] back web | フロントのホスト名                       |
-| DEBUG                  | デバッグモードの切り替え                  | True                               | False                                    |
-| TRUSTED_ORIGINS        | CORS で許可するオリジン                   | http://localhost                   |                                          |
-| DJANGO_SETTINGS_MODULE | Django アプリケーションの設定モジュール   | project.settings.local             | project.settings.dev                     |
-
-### コマンド一覧
-
-| Make                | 実行する処理                                                            | 元のコマンド                                                                               |
-| ------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| make prepare        | node_modules のインストール、イメージのビルド、コンテナの起動を順に行う | docker-compose run --rm front npm install<br>docker-compose up -d --build                  |
-| make up             | コンテナの起動                                                          | docker-compose up -d                                                                       |
-| make build          | イメージのビルド                                                        | docker-compose build                                                                       |
-| make down           | コンテナの停止                                                          | docker-compose down                                                                        |
-| make loaddata       | テストデータの投入                                                      | docker-compose exec app poetry run python manage.py loaddata crm.json                      |
-| make makemigrations | マイグレーションファイルの作成                                          | docker-compose exec app poetry run python manage.py makemigrations                         |
-| make migrate        | マイグレーションを行う                                                  | docker-compose exec app poetry run python manage.py migrate                                |
-| make show_urls      | エンドポイントをターミナル上で一覧表示                                  | docker-compose exec app poetry run python manage.py show_urls                              |
-| make shell          | テストデータの投入                                                      | docker-compose exec app poetry run python manage.py debugsqlshell                          |
-| make superuser      | スーパーユーザの作成                                                    | docker-compose exec app poetry run python manage.py createsuperuser                        |
-| make test           | テストを実行                                                            | docker-compose exec app poetry run pytest                                                  |
-| make test-cov       | カバレッジを表示させた上でテストを実行                                  | docker-compose exec app poetry run pytest --cov                                            |
-| make format         | black と isort を使ってコードを整形                                     | docker-compose exec app poetry run black . <br> docker-compose exec app poetry run isort . |
-| make update         | Poetry 内のパッケージの更新                                             | docker-compose exec app poetry update                                                      |
-| make app            | アプリケーション のコンテナへ入る                                       | docker exec -it app bash                                                                   |
-| make db             | データベースのコンテナへ入る                                            | docker exec -it db bash                                                                    |
-| make pdoc           | pdoc ドキュメントの作成                                                 | docker-compose exec app env CI_MAKING_DOCS=1 poetry run pdoc -o docs application           |
-| make init           | Terraform の初期化                                                      | docker-compose -f infra/docker-compose.yml run --rm terraform init                         |
-| make fmt            | Terraform の設定ファイルをフォーマット                                  | docker-compose -f infra/docker-compose.yml run --rm terraform fmt                          |
-| make validate       | Terraform の構成ファイルが正常であることを確認                          | docker-compose -f infra/docker-compose.yml run --rm terraform validate                     |
-| make show           | 現在のリソースの状態を参照                                              | docker-compose -f infra/docker-compose.yml run --rm terraform show                         |
-| make apply          | Terraform の内容を適用                                                  | docker-compose -f infra/docker-compose.yml run --rm terraform apply                        |
-| make destroy        | Terraform で構成されたリソースを削除                                    | docker-compose -f infra/docker-compose.yml run --rm terraform destroy                      |
-
-### リモートデバッグの方法
-
-リモートデバッグ を使用する際は以下の url を参考に設定してください<br>
-[Django のコンテナへリモートデバッグしよう！](https://qiita.com/shun198/items/9e4fcb4479385217c323)
-
-## Troubleshooting
-
-### .env: no such file or directory
-
-.env ファイルがないので環境変数の一覧を参考に作成しましょう
-
-### docker daemon is not running
-
-Docker Desktop が起動できていないので起動させましょう
-
-### Ports are not available: address already in use
-
-別のコンテナもしくはローカル上ですでに使っているポートがある可能性があります
-<br>
-下記記事を参考にしてください
-<br>
-[コンテナ起動時に Ports are not available: address already in use が出た時の対処法について](https://qiita.com/shun198/items/ab6eca4bbe4d065abb8f)
-
-### Module not found
-
-make build
-
-を実行して Docker image を更新してください-->
 
 <p align="right">(<a href="#top">Back to Top</a>)</p>
