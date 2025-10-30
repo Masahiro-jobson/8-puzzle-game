@@ -1,4 +1,4 @@
-<img width="235" height="70" alt="image" src="https://github.com/user-attachments/assets/3b44e374-06fb-4bc0-9e3f-5a1b5b97398c" /><div id="top"></div>
+
 
 ## Table of the development environment
 
@@ -115,7 +115,7 @@ Node.expand() <br/>
 -	Generates successor Node <br/>
 -	Adds to successors list <br/>
 
-<img width="427" height="79" alt="image" src="https://github.com/user-attachments/assets/51af8ab3-f3c8-4520-8180-c91071707e7c" />
+<img width="427" height="79" alt="image" src="https://github.com/user-attachments/assets/51af8ab3-f3c8-4520-8180-c91071707e7c" /> <br/>
 Figure 3: Direction,node depth & cost, total cost, and heuristic estimation(misplaced tile) <br/>
 
 6.	Solution arrived <br/>
@@ -130,7 +130,7 @@ Solutions.PrintResults() <br/>
 -	Number of nodes dequeued <br/>
 -	Space <br/>
 
-<img width="413" height="102" alt="image" src="https://github.com/user-attachments/assets/561ed948-f743-4ccb-9867-d5e0d9baf638" />
+<img width="413" height="102" alt="image" src="https://github.com/user-attachments/assets/561ed948-f743-4ccb-9867-d5e0d9baf638" /> <br/>
 Figure 4: The results of A* search (misplaced tile) <br/>
 
 7.	Go back to menu <br/>
